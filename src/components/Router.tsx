@@ -1,12 +1,17 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import { ProfileDialog } from "@rad-tools";
+import { getAvailableApi, getAvailableApiCallback, ProfileDialog } from "@rad-tools";
 import { Welcome } from "../routes/welcome/Welcome";
 import { Footer } from "./Footer";
 import { Header } from "./Header";
 import { Access } from "../routes/access/access";
 
 export function Router() {
+    // get all avaible apis
+    useEffect(() => {
+        getAvailableApi(getAvailableApiCallback);
+    });
+
     return (
         <BrowserRouter>
             <ProfileDialog />
