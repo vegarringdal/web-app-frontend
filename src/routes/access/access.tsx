@@ -12,17 +12,11 @@ export function Access() {
                 <Link className="default-button" to="user">
                     Users
                 </Link>
-                <Link className="default-button" to="project">
-                    Project
-                </Link>
                 <Link className="default-button" to="role">
                     Roles
                 </Link>
-                <Link className="default-button" to="projectuser">
-                    Project User
-                </Link>
-                <Link className="default-button" to="projectuserrole">
-                    Project Users Role
+                <Link className="default-button" to="userrole">
+                    Users Role
                 </Link>
             </div>
             <div className="flex flex-1 m-2">
@@ -30,6 +24,7 @@ export function Access() {
                     <Route path="/user" element={<AccessUser />}></Route>
                     <Route path="/role" element={<AccessRole />}></Route>
                     <Route path="/userrole" element={<AccessUserRole />}></Route>
+                    <Route path="/" element={<AccessUser />}></Route>
                 </Routes>
             </div>
         </div>
