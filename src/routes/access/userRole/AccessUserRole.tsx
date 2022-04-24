@@ -26,4 +26,5 @@ export function AccessUserRole() {
             </div>
         );
     }
+    return null;
 }

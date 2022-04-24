@@ -1,10 +1,6 @@
 import { getDataControllerByName, GridControllerButtons, loadDataController, SimpleHtmlGrid } from "@rad-tools";
 import React, { useState } from "react";
 
-/**
- * Access urse
- * @returns
- */
 export function AccessUser() {
     const [reload, setReload] = useState(true);
 
@@ -31,4 +27,5 @@ export function AccessUser() {
             </div>
         );
     }
+    return null;
 }
