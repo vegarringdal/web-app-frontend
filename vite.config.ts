@@ -1,7 +1,17 @@
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 import { config } from "dotenv";
-import { DEFAULT_PORT_API, DEFAULT_PORT_WEB, DEFAULT_SERVER_API_ROOT, toNumber } from "../rad-common/src/config_defaults";
+import {
+    DEFAULT_AZURE_CLIENT_ID,
+    DEFAULT_AZURE_SCOPES,
+    DEFAULT_AZURE_TENDANT_ID,
+    DEFAULT_PORT_API,
+    DEFAULT_PORT_WEB,
+    DEFAULT_SERVER_API_ROOT,
+    toArray,
+    toNumber,
+    toString
+} from "../rad-common/src/config_defaults";
 import { compilerOptions } from "./tsconfig.json";
 import { resolve } from "path";
 
@@ -11,6 +21,9 @@ config({ path: "../.env" });
 const ENV = process.env;
 const PORT_API = toNumber(ENV.PORT_API, DEFAULT_PORT_API);
 const PORT_WEB = toNumber(ENV.PORT_WEB, DEFAULT_PORT_WEB);
+const AZURE_SCOPES = toArray(ENV.AZURE_SCOPES, DEFAULT_AZURE_SCOPES);
+const AZURE_CLIENT_ID = toString(ENV.AZURE_CLIENT_ID, DEFAULT_AZURE_CLIENT_ID);
+const AZURE_TENDANT_ID = toString(ENV.AZURE_TENDANT_ID, DEFAULT_AZURE_TENDANT_ID);
 const SERVER_API_ROOT = ENV.SERVER_API_ROOT || DEFAULT_SERVER_API_ROOT;
 
 //https://github.com/vitejs/vite/issues/88
@@ -28,6 +41,12 @@ const alias = Object.entries(compilerOptions.paths).reduce((acc, [key, [value]])
 export default defineConfig({
     root: "./src",
     plugins: [react()],
+    define: {
+        // eslint-disable-next-line @typescript-eslint/no-var-requires
+        AZURE_CLIENT_ID: `"${AZURE_CLIENT_ID}"`,
+        AZURE_SCOPES: `"${AZURE_SCOPES}"`,
+        AZURE_TENDANT_ID: `"${AZURE_TENDANT_ID}"`
+    },
     resolve: {
         alias
     },
@@ -37,17 +56,6 @@ export default defineConfig({
             [SERVER_API_ROOT]: {
                 target: `http://localhost:${PORT_API}`,
                 changeOrigin: true
-            },
-            // TODO: add as URL ?
-            ["/login"]: {
-                target: `http://localhost:${PORT_API}`,
-                changeOrigin: true,
-                secure: false
-            },
-            ["/redirect"]: {
-                target: `http://localhost:${PORT_API}`,
-                changeOrigin: true,
-                secure: false
             }
         }
     },
