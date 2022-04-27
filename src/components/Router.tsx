@@ -5,6 +5,7 @@ import { Welcome } from "../routes/welcome/Welcome";
 import { Footer } from "./Footer";
 import { Header } from "./Header";
 import { Access } from "../routes/access/access";
+import { DrumAndCable } from "../routes/drumAndCable/drumAndCable";
 
 export function Router() {
     return (
@@ -17,6 +18,7 @@ export function Router() {
                     <Routes>
                         <Route path="/" element={<Welcome />}></Route>
                         <Route path="/access/*" element={<Access />}></Route>
+                        <Route path="/drumAndCable/*" element={<DrumAndCable />}></Route>
                     </Routes>
                 </div>
                 <Footer />
