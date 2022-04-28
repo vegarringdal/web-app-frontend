@@ -11,8 +11,8 @@
         "prepare": "husky install"
     },
     "devDependencies": {
-        "@simple-html/datasource": "4.0.0-next.21",
-        "@simple-html/grid": "4.0.0-next.21",
+        "@simple-html/datasource": "4.0.0-next.22",
+        "@simple-html/grid": "4.0.0-next.22",
         "@testing-library/jest-dom": "^5.16.4",
         "@testing-library/react": "^13.1.1",
         "@types/jest": "^27.4.1",
