@@ -1,7 +1,7 @@
 import React from "react";
 import { ApiLoader, GridControllerButtons, SimpleHtmlGrid } from "@rad-tools";
 
-export function Cable() {
+export function Drum() {
     const controllerName = "DRUM";
     return (
         <ApiLoader
