@@ -1,6 +1,6 @@
 import React from "react";
 import "./App.css";
-import { themeStateController } from "@rad-tools";
+import { DropDownDialog, themeStateController } from "@rad-tools";
 import { ActivateGridDarkTheme } from "@rad-tools";
 import { initDarkTheme } from "@rad-tools";
 import { LoadingDialog } from "@rad-tools";
@@ -17,11 +17,13 @@ export function App() {
     return (
         <div className="app bg-gray-100 dark:bg-gray-800 dark:text-white">
             <ActivateGridDarkTheme enabled={theme.darktheme}></ActivateGridDarkTheme>
-            <LoadingDialog />
-            <ErrorDialog />
-            <RelatedDataDialog />
+
             <AuthLoader>
                 <Router />
+                <RelatedDataDialog />
+                <LoadingDialog />
+                <ErrorDialog />
+                <DropDownDialog />
             </AuthLoader>
         </div>
     );
