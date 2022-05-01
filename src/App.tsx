@@ -17,13 +17,12 @@ export function App() {
     return (
         <div className="app bg-gray-100 dark:bg-gray-800 dark:text-white">
             <ActivateGridDarkTheme enabled={theme.darktheme}></ActivateGridDarkTheme>
-
+            <RelatedDataDialog />
+            <LoadingDialog />
+            <ErrorDialog />
+            <DropDownDialog />
             <AuthLoader>
                 <Router />
-                <RelatedDataDialog />
-                <LoadingDialog />
-                <ErrorDialog />
-                <DropDownDialog />
             </AuthLoader>
         </div>
     );
