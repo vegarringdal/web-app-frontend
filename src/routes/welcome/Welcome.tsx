@@ -9,9 +9,10 @@ export function Welcome() {
         <div className="flex w-full flex-col">
             <div className="m-auto text-2xl p-2 mt-5">Welcome {guiState.currentUser}</div>
             <div className="m-auto  p-2 mt-5">
-                This is a proof of concept page for grid/datasource and updating with dynamic rest api
+                This is a proof of concept page for grid/datasource for applications and dynamic rest api for report
+                with CRUD oerations
             </div>
-            <div className="m-auto flex ">
+            <div className="m-auto flex mt-2">
                 <div className="m-auto">
                     <Link
                         to="admin"
