@@ -4,8 +4,9 @@ import { Routes, Route } from "react-router";
 import { AccessUserRole } from "./userRole/AccessUserRole";
 import { AccessRole } from "./role/AccessRole";
 import { AccessUser } from "./user/accessUser";
+import { AdminLanding } from "./adminLanding/AdminLanding";
 
-export function Access() {
+export function Admin() {
     return (
         <div className="flex flex-col w-full">
             <div className="flex justify-center  m-2 p-2">
@@ -24,7 +25,7 @@ export function Access() {
                     <Route path="/user" element={<AccessUser />}></Route>
                     <Route path="/role" element={<AccessRole />}></Route>
                     <Route path="/userrole" element={<AccessUserRole />}></Route>
-                    <Route path="/" element={<AccessUser />}></Route>
+                    <Route path="/" element={<AdminLanding />}></Route>
                 </Routes>
             </div>
         </div>

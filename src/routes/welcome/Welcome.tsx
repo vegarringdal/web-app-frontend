@@ -14,10 +14,10 @@ export function Welcome() {
             <div className="m-auto flex ">
                 <div className="m-auto">
                     <Link
-                        to="access"
+                        to="admin"
                         className="m-2 p-2 bg-gray-200 w-28  hover:bg-gray-300 focus:outline-none  dark:bg-gray-700  dark:hover:bg-gray-600 dark:text-blue-400 font-semibold"
                     >
-                        Access
+                        Admin
                     </Link>
                     <Link
                         to="drumAndCable"
