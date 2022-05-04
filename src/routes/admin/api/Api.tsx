@@ -1,6 +1,6 @@
 import { ApiLoader, getDataControllerByName, GridControllerButtons, SimpleHtmlGrid } from "@rad-tools";
 import React, { useEffect, useState } from "react";
-import { ApiInterface } from "@rad-common";
+import json5 from "json5";
 
 export function Api() {
     const controllerName = "WEB_REST_API";
@@ -28,7 +28,7 @@ export function Api() {
 }
 
 export function Details(props: { controllerName: string }) {
-    const [data, setData] = useState({} as { NAME: string; DATA: ApiInterface });
+    const [data, setData] = useState({} as { NAME: string; DATA: string });
     const controller = getDataControllerByName(props.controllerName);
     const dataSource = controller.dataSource;
 
@@ -41,6 +41,14 @@ export function Details(props: { controllerName: string }) {
                 const obj = {} as Details;
                 obj.NAME = dataSource.currentEntity?.NAME;
                 obj.DATA = dataSource.currentEntity?.DATA;
+                if (obj.DATA && typeof obj.DATA !== "string") {
+                    try {
+                        obj.DATA = JSON.stringify(obj.DATA);
+                    } catch (err) {
+                        console.log(err);
+                        obj.DATA = "";
+                    }
+                }
 
                 setData(obj);
             }
@@ -54,8 +62,30 @@ export function Details(props: { controllerName: string }) {
     });
 
     return (
-        <div className="flex flex-col m-2 flex-1">
-            <span>{data?.NAME}</span>
+        <div className="flex flex-col m-2 p-2 flex-1">
+            <span className="p-2 m-2">API name: {data?.NAME}</span>
+            <hr></hr>
+            <button
+                onClick={() => {
+                    if (dataSource.currentEntity) {
+                        dataSource.currentEntity.DATA = JSON.stringify(json5.parse(data.DATA));
+                    }
+                }}
+                className="m-2 p-2 bg-gray-200 w-28  hover:bg-gray-300 focus:outline-none  dark:bg-gray-700  dark:hover:bg-gray-600 dark:text-blue-400 font-semibold"
+            >
+                Verify & Update
+            </button>
+            <span className="p-2 m-2 mb-0">API config json string:</span>
+
+            <textarea
+                value={data?.DATA || ""}
+                onChange={(e) => {
+                    const obj = Object.assign({}, data);
+                    obj.DATA = e.target.value;
+                    setData(obj);
+                }}
+                className="flex-1 p-2 m-2 mt-0  text-gray-800"
+            ></textarea>
         </div>
     );
 }
