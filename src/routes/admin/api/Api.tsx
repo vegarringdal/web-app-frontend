@@ -41,17 +41,12 @@ export function Details(props: { controllerName: string }) {
                 const obj = {} as Details;
                 obj.NAME = dataSource.currentEntity?.NAME;
                 obj.DATA = dataSource.currentEntity?.DATA;
-                if (obj.DATA && typeof obj.DATA !== "string") {
-                    try {
-                        obj.DATA = JSON.stringify(obj.DATA);
-                    } catch (err) {
-                        console.log(err);
-                        obj.DATA = "";
-                    }
-                }
 
+                obj.DATA = json5.stringify(json5.parse(obj.DATA), { space: 4 });
                 setData(obj);
             }
+            // to keep it
+            return true;
         };
 
         dataSource.addEventListener(datahandler);
@@ -75,8 +70,10 @@ export function Details(props: { controllerName: string }) {
             >
                 Verify & Update
             </button>
-            <span className="p-2 m-2 mb-0">API config json string:</span>
-
+            <span className="p-2 m-2 mb-0">API config json string:(use code IDE for editing..)</span>
+            {/* 
+                I need to make GUI interface or add better code editor: https://github.com/antonmedv/codejar
+            */}
             <textarea
                 value={data?.DATA || ""}
                 onChange={(e) => {
@@ -84,7 +81,7 @@ export function Details(props: { controllerName: string }) {
                     obj.DATA = e.target.value;
                     setData(obj);
                 }}
-                className="flex-1 p-2 m-2 mt-0  text-gray-800"
+                className="flex-1 p-2 m-2 mt-0  bg-gray-700 text-gray-200 outline-none"
             ></textarea>
         </div>
     );
